@@ -1,0 +1,24 @@
+{
+  "name": "practice-tdd-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutakiyama/practice-tdd-ts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yutakiyama/practice-tdd-ts/issues"
+  },
+  "homepage": "https://github.com/yutakiyama/practice-tdd-ts#readme",
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "typescript": "^4.3.2"
+  }
+}
