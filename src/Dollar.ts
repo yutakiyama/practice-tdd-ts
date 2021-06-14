@@ -5,6 +5,6 @@ export class Dollar {
   }
 
   times(multiplier: number): void {
-    this.amount = 5 * 2;
+    this.amount *= multiplier;
   }
 }
