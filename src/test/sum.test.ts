@@ -1,4 +1,4 @@
-import { sum } from "../sum";
+import { sum } from '../sum';
 
 describe('sumは', () => {
     test('10と2を受け取ると3を返す', () => {
