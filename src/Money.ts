@@ -1,13 +1,20 @@
 import internal from 'stream';
 
-export abstract class Money {
+export class Money {
   protected amount!: number;
-  protected currency!: string;
-  abstract times(multiplier: number): Money;
+  protected _currency!: string;
 
   constructor(amount: number, currency: string) {
     this.amount = amount;
-    this.currency = currency;
+    this._currency = currency;
+  }
+
+  times(multiplier: number): Money {
+    return new Money(this.amount * multiplier, this._currency);
+  }
+
+  currency(): string {
+    return this._currency;
   }
 
   equals(object: Money) {
@@ -16,8 +23,12 @@ export abstract class Money {
     return (
       this.amount === money.amount &&
       // 書籍だとJavaのgetClassを使って評価
-      this.constructor.name === money.constructor.name
+      this.currency() === money.currency()
     );
+  }
+
+  toString() {
+    return `${this.amount} ${this._currency}`;
   }
 
   static dollar(amount: number): Dollar {
@@ -34,19 +45,11 @@ export class Franc extends Money {
   constructor(amount: number, currency: string) {
     super(amount, currency);
   }
-
-  times(multiplier: number): Money {
-    return Money.franc(this.amount * multiplier);
-  }
 }
 
 // Dollar
 export class Dollar extends Money {
   constructor(amount: number, currency: string) {
     super(amount, currency);
-  }
-
-  times(multiplier: number): Money {
-    return Money.dollar(this.amount * multiplier);
   }
 }

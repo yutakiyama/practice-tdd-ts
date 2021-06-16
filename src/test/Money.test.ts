@@ -28,7 +28,12 @@ describe('Money', () => {
 
   test('通貨のテスト', () => {
     const five = Money.franc(5);
-    expect(five.times(2)).toEqual(Money.franc(10));
-    expect(five.times(3)).toEqual(Money.franc(15));
+    expect(Money.dollar(1).currency()).toBe('USD');
+    expect(Money.franc(1).currency()).toBe('CHF');
+  });
+
+  test('異なるクラスの等価性', () => {
+    const five = Money.franc(5);
+    expect(new Money(10, 'CHF')).toEqual(new Franc(10, 'CHF'));
   });
 });
