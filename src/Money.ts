@@ -1,9 +1,14 @@
+import internal from 'stream';
+
 export abstract class Money {
   protected amount!: number;
   protected currency!: string;
   abstract times(multiplier: number): Money;
 
-  constructor() {}
+  constructor(amount: number, currency: string) {
+    this.amount = amount;
+    this.currency = currency;
+  }
 
   equals(object: Money) {
     const money = object as Money;
@@ -27,9 +32,7 @@ export abstract class Money {
 //  Franc
 export class Franc extends Money {
   constructor(amount: number, currency: string) {
-    super();
-    this.amount = amount;
-    this.currency = currency;
+    super(amount, currency);
   }
 
   times(multiplier: number): Money {
@@ -40,9 +43,7 @@ export class Franc extends Money {
 // Dollar
 export class Dollar extends Money {
   constructor(amount: number, currency: string) {
-    super();
-    this.amount = amount;
-    this.currency = currency;
+    super(amount, currency);
   }
 
   times(multiplier: number): Money {
