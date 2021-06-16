@@ -1,4 +1,4 @@
-import { Money, Dollar, Franc } from '../Money';
+import { Money } from '../Money';
 
 describe('Money', () => {
   test('掛け算のテスト', () => {
@@ -12,28 +12,13 @@ describe('Money', () => {
     // 三角測量
     expect(Money.dollar(5).equals(Money.dollar(6))).not.toBeTruthy();
 
-    // Franc
-    expect(Money.franc(5).equals(Money.franc(5))).toBeTruthy();
-    expect(Money.franc(5).equals(Money.franc(6))).toBeFalsy();
-
     // 比較
     expect(Money.franc(5).equals(Money.dollar(5))).toBeFalsy();
-  });
-
-  test('フランの掛け算テスト', () => {
-    const five = Money.franc(5);
-    expect(five.times(2)).toEqual(Money.franc(10));
-    expect(five.times(3)).toEqual(Money.franc(15));
   });
 
   test('通貨のテスト', () => {
     const five = Money.franc(5);
     expect(Money.dollar(1).currency()).toBe('USD');
     expect(Money.franc(1).currency()).toBe('CHF');
-  });
-
-  test('異なるクラスの等価性', () => {
-    const five = Money.franc(5);
-    expect(new Money(10, 'CHF')).toEqual(new Franc(10, 'CHF'));
   });
 });

@@ -31,25 +31,11 @@ export class Money {
     return `${this.amount} ${this._currency}`;
   }
 
-  static dollar(amount: number): Dollar {
-    return new Dollar(amount, 'USD');
+  static dollar(amount: number): Money {
+    return new Money(amount, 'USD');
   }
 
-  static franc(amount: number): Franc {
-    return new Franc(amount, 'CHF');
-  }
-}
-
-//  Franc
-export class Franc extends Money {
-  constructor(amount: number, currency: string) {
-    super(amount, currency);
-  }
-}
-
-// Dollar
-export class Dollar extends Money {
-  constructor(amount: number, currency: string) {
-    super(amount, currency);
+  static franc(amount: number): Money {
+    return new Money(amount, 'CHF');
   }
 }
