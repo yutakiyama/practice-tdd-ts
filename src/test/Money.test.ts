@@ -25,4 +25,10 @@ describe('Money', () => {
     expect(five.times(2)).toEqual(Money.franc(10));
     expect(five.times(3)).toEqual(Money.franc(15));
   });
+
+  test('通貨のテスト', () => {
+    const five = Money.franc(5);
+    expect(five.times(2)).toEqual(Money.franc(10));
+    expect(five.times(3)).toEqual(Money.franc(15));
+  });
 });
