@@ -1,16 +1,20 @@
 import internal from 'stream';
 
-export class Money {
-  protected amount!: number;
+export class Money implements Expression {
+  protected _amount!: number;
   protected _currency!: string;
 
   constructor(amount: number, currency: string) {
-    this.amount = amount;
+    this._amount = amount;
     this._currency = currency;
   }
 
   times(multiplier: number): Money {
-    return new Money(this.amount * multiplier, this._currency);
+    return new Money(this._amount * multiplier, this._currency);
+  }
+
+  plus(addend: Money): Expression {
+    return new Money(this._amount + addend._amount, this._currency);
   }
 
   currency(): string {
@@ -21,14 +25,14 @@ export class Money {
     const money = object as Money;
 
     return (
-      this.amount === money.amount &&
+      this._amount === money._amount &&
       // 書籍だとJavaのgetClassを使って評価
       this.currency() === money.currency()
     );
   }
 
   toString() {
-    return `${this.amount} ${this._currency}`;
+    return `${this._amount} ${this._currency}`;
   }
 
   static dollar(amount: number): Money {
@@ -37,5 +41,12 @@ export class Money {
 
   static franc(amount: number): Money {
     return new Money(amount, 'CHF');
+  }
+}
+
+// Bank
+export class Bank {
+  reduce(source: Expression, to: string) {
+    return Money.dollar(10);
   }
 }

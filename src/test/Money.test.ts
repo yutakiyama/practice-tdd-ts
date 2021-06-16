@@ -1,10 +1,19 @@
-import { Money } from '../Money';
+import { Money, Bank } from '../Money';
 
 describe('Money', () => {
   test('掛け算のテスト', () => {
     const five: Money = Money.dollar(5);
     expect(five.times(2)).toEqual(Money.dollar(10));
     expect(five.times(3)).toEqual(Money.dollar(15));
+  });
+
+  test('シンプルな足し算', () => {
+    const five: Money = Money.dollar(5);
+    const sum = five.plus(five);
+    const bank = new Bank();
+    // reduced: 為替レートを適用することによって得られる換算結果
+    const reduced = bank.reduce(sum, 'USD');
+    expect(reduced).toEqual(Money.dollar(10));
   });
 
   test('等価性比較のテスト', () => {
