@@ -18,6 +18,10 @@ export class Money implements Expression {
     return new Sum(this, addend);
   }
 
+  reduce(to: string): Money {
+    return this;
+  }
+
   currency(): string {
     return this._currency;
   }
@@ -34,6 +38,10 @@ export class Money implements Expression {
 
   toString() {
     return `${this._amount} ${this._currency}`;
+  }
+
+  getAmount(): number {
+    return this._amount;
   }
 
   static dollar(amount: number): Money {

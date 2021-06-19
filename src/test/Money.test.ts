@@ -27,6 +27,19 @@ describe('Money', () => {
     expect(five).toEqual(sum.addend);
   });
 
+  test('reduceメソッドに渡す引数がSumのテスト', () => {
+    const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4));
+    const bank: Bank = new Bank();
+    const result: Money = bank.reduce(sum, 'USD');
+    expect(result).toEqual(Money.dollar(7));
+  });
+
+  test('reduceメソッドに渡す引数がMoneyのテスト', () => {
+    const bank: Bank = new Bank();
+    const result: Money = bank.reduce(Money.dollar(1), 'USD');
+    expect(result).toEqual(Money.dollar(1));
+  });
+
   test('等価性比較のテスト', () => {
     expect(Money.dollar(5).equals(Money.dollar(5))).toBeTruthy();
     // 三角測量
