@@ -1,4 +1,4 @@
-import internal from 'stream';
+import { Expression } from './Expression';
 
 export class Money implements Expression {
   protected _amount!: number;
@@ -41,12 +41,5 @@ export class Money implements Expression {
 
   static franc(amount: number): Money {
     return new Money(amount, 'CHF');
-  }
-}
-
-// Bank
-export class Bank {
-  reduce(source: Expression, to: string) {
-    return Money.dollar(10);
   }
 }
