@@ -40,6 +40,17 @@ describe('Money', () => {
     expect(result).toEqual(Money.dollar(1));
   });
 
+  test('同じ通貨のときのレートは1で返ってくること', () => {
+    expect(new Bank().rate('USD', 'USD')).toEqual(1);
+  });
+
+  test('異なる通貨のreduceのテスト', () => {
+    const bank: Bank = new Bank();
+    bank.addRate('CHF', 'USD', 2);
+    const result: Money = bank.reduce(Money.franc(2), 'USD');
+    expect(result).toEqual(Money.dollar(1));
+  });
+
   test('等価性比較のテスト', () => {
     expect(Money.dollar(5).equals(Money.dollar(5))).toBeTruthy();
     // 三角測量
