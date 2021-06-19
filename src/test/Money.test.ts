@@ -1,4 +1,7 @@
-import { Money, Bank } from '../Money';
+import { Money } from '../Money';
+import { Bank } from '../Bank';
+import { Expression } from '../Expression';
+import { Sum } from '../Sum';
 
 describe('Money', () => {
   test('掛け算のテスト', () => {
@@ -14,6 +17,14 @@ describe('Money', () => {
     // reduced: 為替レートを適用することによって得られる換算結果
     const reduced = bank.reduce(sum, 'USD');
     expect(reduced).toEqual(Money.dollar(10));
+  });
+
+  test('plusメソッドははSumクラスのインスタンスを返すこと', () => {
+    const five: Money = Money.dollar(5);
+    const result: Expression = five.plus(five);
+    const sum: Sum = result as Sum;
+    expect(five).toEqual(sum.augend);
+    expect(five).toEqual(sum.addend);
   });
 
   test('等価性比較のテスト', () => {
