@@ -42,7 +42,7 @@ export class Money implements Expression {
     return `${this._amount} ${this._currency}`;
   }
 
-  getAmount(): number {
+  get amount(): number {
     return this._amount;
   }
 
