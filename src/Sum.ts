@@ -5,6 +5,13 @@ import { Bank } from './Bank';
 export class Sum implements Expression {
   constructor(public augend: Expression, public addend: Expression) {}
 
+  times(multiplier: number): Expression {
+    return new Sum(
+      this.augend.times(multiplier),
+      this.addend.times(multiplier)
+    );
+  }
+
   plus(addend: Expression): Expression {
     return new Sum(this, addend);
   }
