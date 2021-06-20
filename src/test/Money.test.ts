@@ -61,8 +61,16 @@ describe('Money', () => {
   });
 
   test('通貨のテスト', () => {
-    const five = Money.franc(5);
     expect(Money.dollar(1).currency()).toBe('USD');
     expect(Money.franc(1).currency()).toBe('CHF');
+  });
+
+  test('異通貨の足し算テスト', () => {
+    const fiveBucks: Expression = Money.dollar(5);
+    const tenFrancs: Expression = Money.franc(10);
+    const bank: Bank = new Bank();
+    bank.addRate('CHF', 'USD', 2);
+    const result: Money = bank.reduce(fiveBucks.plus(tenFrancs), 'USD');
+    expect(result).toEqual(Money.dollar(10));
   });
 });

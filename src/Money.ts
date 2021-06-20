@@ -11,11 +11,11 @@ export class Money implements Expression {
     this._currency = currency;
   }
 
-  times(multiplier: number): Money {
+  times(multiplier: number): Expression {
     return new Money(this._amount * multiplier, this._currency);
   }
 
-  plus(addend: Money): Expression {
+  plus(addend: Expression): Expression {
     return new Sum(this, addend);
   }
 
@@ -32,9 +32,7 @@ export class Money implements Expression {
     const money = object as Money;
 
     return (
-      this._amount === money._amount &&
-      // 書籍だとJavaのgetClassを使って評価
-      this.currency() === money.currency()
+      this._amount === money._amount && this.currency() === money.currency()
     );
   }
 
