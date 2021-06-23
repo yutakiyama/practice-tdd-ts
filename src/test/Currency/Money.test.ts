@@ -1,7 +1,7 @@
-import { Money } from '../Money';
-import { Bank } from '../Bank';
-import { Expression } from '../Expression';
-import { Sum } from '../Sum';
+import { Money } from '../../Currency/Money';
+import { Bank } from '../../Currency/Bank';
+import { Expression } from '../../Currency/Expression';
+import { Sum } from '../../Currency/Sum';
 
 describe('Money', () => {
   test('掛け算のテスト', () => {
